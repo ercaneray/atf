@@ -24,3 +24,10 @@ export async function takeScreenshot(serial) {
   return buffer;
 }
 
+//* Shell komutu çalştır
+export async function runCommand(command, serial) {
+  if (!serial) throw new Error("Serial is required!")
+  if (!command) throw new Error("Command is required!")
+  const output = await sh(`adb -s ${serial} shell ${command}`);
+  return output;
+}

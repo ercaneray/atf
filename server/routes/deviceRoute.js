@@ -1,5 +1,5 @@
 import express from "express"
-import { getScreenshot, getDevice, getDevices } from "../controllers/deviceController.js";
+import { getScreenshot, getDevice, getDevices, postCommand } from "../controllers/deviceController.js";
 
 const router = express.Router();
 
@@ -10,5 +10,9 @@ router.get("/:serial/screenshot", getScreenshot);
 router.get("/:serial", getDevice);
 //* GET all devices
 router.get("/", getDevices);
+
+//! POST routes
+//* POST shell command
+router.post("/:serial/command", postCommand);
 
 export default router;

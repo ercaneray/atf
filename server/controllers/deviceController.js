@@ -1,4 +1,4 @@
-import { listDevices } from "../services/adbService.js"
+import { listDevices, runCommand } from "../services/adbService.js"
 import { deviceDetails } from "../services/adbService.js";
 import { takeScreenshot } from "../services/adbService.js";
 
@@ -39,5 +39,19 @@ export async function getScreenshot(req, res) {
         res.send(imgBuffer);
     } catch (error) {
         res.status(500).json({ error: String(error) });
+    }
+}
+
+//* POST adb shell command
+export async function postCommand(req, res) {
+    const { serial } = req.params;
+    const { command } = req.body;
+    try {
+        if (!command) throw new Error("Command is required!");
+        const result = await runCommand(command, serial);
+        res.type("text/plain").send(result);
+    } catch (error) {
+        res.status(500).json({ error: (error) })
+        console.log(serial, cleanCommand);
     }
 }
