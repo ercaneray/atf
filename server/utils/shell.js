@@ -8,4 +8,13 @@ export function sh(cmd) {
       resolve(stdout);
     });
   });
-}
+};
+
+export function shBuffer(cmd, opts = {}) {
+  return new Promise((resolve, reject) => {
+    exec(cmd, { ...opts, encoding: "buffer", maxBuffer: 10 * 1024 * 1024 }, (err, stdout, stderr) => {
+      if (err) return reject(stderr || err.message);
+      resolve(stdout);
+    });
+  });
+};

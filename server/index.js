@@ -1,7 +1,6 @@
 import cors from "cors";
 import express from "express"
-import { getDevices } from "./controllers/deviceController.js";
-import { getDevice } from "./controllers/deviceController.js";
+import devicesRoute from "./routes/deviceRoute.js"
 
 const app = express()
 // Middleware
@@ -14,11 +13,9 @@ app.get("/", (req, res) => {
     res.send("Api Açık");
 });
 
-//* GET all devices
-app.use("/api/devices", getDevices);
+//* Device Routes
+app.use("/api/devices", devicesRoute);
 
-//* GET device detail
-app.use("/api/device/:serial", getDevice);
 
 const PORT = process.env.PORT || 8080;
 app.listen((PORT), () => {
