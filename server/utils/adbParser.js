@@ -1,4 +1,4 @@
-// adc çıktısı için parsing
+//! adb çıktıları için parsing
 
 export function parseKVs(tokens) {
   const kv = {};
@@ -9,7 +9,8 @@ export function parseKVs(tokens) {
   return kv;
 }
 
-export function parseAdbDevicesL(output) {
+//* DeviceList Parsing
+export function parseDeviceList(output) {
   const lines = output.split("\n").map(l => l.trim()).filter(Boolean);
   const rows = lines.slice(1); // header'ı at
   const list = [];
@@ -41,4 +42,18 @@ export function parseAdbDevicesL(output) {
   }
 
   return list;
-}
+};
+//* Device getprop parsing
+export function parseDeviceDetails(output) {
+  const props = {};
+  if (!output) return props;
+
+  const lines = output.replace(/\r/g, "").split("\n");
+  for (const line of lines) {
+    const m = line.match(/^\[([^\]]+)\]: \[(.*)\]$/);
+    if (m) {
+      props[m[1]] = m[2];
+    }
+  }
+  return props;
+};
