@@ -60,11 +60,6 @@ export default function DeviceList() {
           </tbody>
         </table>
       </div>
-
-      {/* küçük bir not */}
-      <p style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
-        Android sürümü ve diğer ayrıntılar için satıra tıklayın.
-      </p>
     </div>
   );
 }

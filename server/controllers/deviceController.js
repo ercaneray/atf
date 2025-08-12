@@ -49,7 +49,7 @@ export async function postCommand(req, res) {
     try {
         if (!command) throw new Error("Command is required!");
         const result = await runCommand(command, serial);
-        res.type("text/plain").send(result);
+        res.json({ output: result });
     } catch (error) {
         res.status(500).json({ error: (error) })
         console.log(serial, cleanCommand);

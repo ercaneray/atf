@@ -13,6 +13,6 @@ router.get("/", getDevices);
 
 //! POST routes
 //* POST shell command
-router.post("/:serial/command", postCommand);
+router.post("/:serial/shell", postCommand);
 
 export default router;
