@@ -15,3 +15,8 @@ export interface DeviceListResponse {
     total: number;
     devices: Device[];
 }
+
+export interface DeviceInfoResponse {
+  serial: string;
+  details: Record<string, string>;
+}

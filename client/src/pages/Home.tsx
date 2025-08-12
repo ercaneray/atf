@@ -2,7 +2,10 @@ import DeviceList from "../components/DeviceList"
 function Home() {
 
     return (
-        <DeviceList />
+        <div style={{ padding: 16 }}>
+            <h1>Andriod Device Farm Dashboard</h1>
+            <DeviceList />
+        </div>
     )
 }
 
